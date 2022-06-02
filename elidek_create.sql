@@ -1,6 +1,6 @@
-DROP SCHEMA IF EXISTS basi_tou_dieythinti;
-CREATE SCHEMA basi_tou_dieythinti;
-USE basi_tou_dieythinti;
+DROP SCHEMA IF EXISTS elidek;
+CREATE SCHEMA elidek;
+USE elidek;
 
 CREATE TABLE organization (
 	org_id int(10) NOT NULL,
