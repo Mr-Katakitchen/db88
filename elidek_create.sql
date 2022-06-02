@@ -100,12 +100,11 @@ CREATE TABLE scientific_field_of_project (
 
 CREATE TABLE project_task (
 	proj_id int(10) NOT NULL,
-	task_id int(10) NOT NULL,
 	title varchar(100),
 	summary varchar(500) null,
 	due_date date,
 	FOREIGN KEY (proj_id) references project(proj_id),
-	PRIMARY KEY (proj_id, task_id) 
+	PRIMARY KEY (proj_id, title) 
 );
 
 
