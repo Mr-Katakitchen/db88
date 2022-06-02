@@ -68,7 +68,7 @@ CREATE TABLE project (
 );
 
 
-CREATE TABLE researcher_works_on_project (
+CREATE TABLE works_on (
 	proj_id int(10) NOT NULL,
 	res_id int(10) NOT NULL,
 	FOREIGN KEY (res_id) references researcher(res_id),
@@ -77,7 +77,7 @@ CREATE TABLE researcher_works_on_project (
 );
 
 
-CREATE TABLE researcher_evaluates_project (
+CREATE TABLE evaluates (
 	proj_id int(10) NOT NULL,
 	res_id int(10) NOT NULL,
 	grade int(3),
@@ -89,7 +89,7 @@ CREATE TABLE researcher_evaluates_project (
 );
 
 
-CREATE TABLE scientific_field_of_project (
+CREATE TABLE field_project (
 	proj_id int(10) NOT NULL,
 	field_id int(10) NOT NULL,
 	FOREIGN KEY (proj_id) references project(proj_id),
@@ -98,7 +98,7 @@ CREATE TABLE scientific_field_of_project (
 );
 
 
-CREATE TABLE project_task (
+CREATE TABLE task (
 	proj_id int(10) NOT NULL,
 	title varchar(100),
 	summary varchar(500) null,
@@ -108,7 +108,7 @@ CREATE TABLE project_task (
 );
 
 
-CREATE TABLE org_company (
+CREATE TABLE company (
 	org_id int(10) NOT NULL,
 	priv_funds float(17,2),
 	FOREIGN KEY (org_id) references organization(org_id),
@@ -116,7 +116,7 @@ CREATE TABLE org_company (
 );
 
 
-CREATE TABLE org_research_center (
+CREATE TABLE research_center (
 	org_id int(10) NOT NULL,
 	priv_funds float(17,2),
 	pub_funds float(17,2),
@@ -125,7 +125,7 @@ CREATE TABLE org_research_center (
 );
 
 
-CREATE TABLE org_university (
+CREATE TABLE university (
 	org_id int(10) NOT NULL,
 	pub_funds float(17,2),
 	FOREIGN KEY (org_id) references organization(org_id),
@@ -133,7 +133,7 @@ CREATE TABLE org_university (
 );
 
 
-CREATE TABLE org_phone_numbers (
+CREATE TABLE phone_numbers (
 	org_id int(10) NOT NULL,
 	ph_number varchar(15) NOT NULL,
 	FOREIGN KEY (org_id) references organization(org_id),
