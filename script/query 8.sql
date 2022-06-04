@@ -1,6 +1,6 @@
 SELECT 
-	res_id, first_name, last_name, projects
+	concat(first_name, ' ', last_name) AS researcher_name, projects
 FROM taskless_proj_count_per_res
-WHERE projects >= 3;
+WHERE projects >= 5;
 
 
