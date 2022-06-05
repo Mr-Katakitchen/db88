@@ -1,5 +1,5 @@
 SELECT title 
-FROM scientific_field; #SELECT field, SET variable
+FROM scientific_field; #SELECT field
 
 SELECT
 	scientific_field.title,
@@ -11,7 +11,7 @@ INNER JOIN scientific_field ON
 INNER JOIN project ON
 	project.proj_id = field_project.proj_id
 WHERE 
-	scientific_field.title = 'Epidemiology' #variable name
+	scientific_field.title = 'Epidemiology' #name OF selected field
 and
 	project.ends_on > sysdate()
 GROUP BY
@@ -31,7 +31,7 @@ INNER JOIN works_on ON
 INNER JOIN researcher ON
 	researcher.res_id = works_on.res_id
 WHERE
-	scientific_field.title = 'Epidemiology' #variable name
+	scientific_field.title = 'Epidemiology' #name OF selected field
 and
 	project.started_on >= adddate(sysdate(), INTERVAL -1 YEAR)
 GROUP BY
