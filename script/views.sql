@@ -27,14 +27,6 @@ INNER JOIN researcher ON
 	researcher.res_id = evaluates.res_id 
 GROUP BY proj_id;
 
-CREATE VIEW proj_count_per_org AS
-	SELECT organization.org_id, name AS org_name, count(project.org_id) AS projects, proj_id, started_on
-FROM organization
-INNER JOIN project ON
-		organization.org_id = project.org_id
-GROUP BY
-		organization.org_id;
-
 CREATE VIEW field_pair AS
 	SELECT field1.title AS title1, field2.title AS title2,  table1.field_id AS id1, table2.field_id AS id2, table1.proj_id
 FROM
@@ -52,7 +44,7 @@ FROM works_on
 INNER JOIN researcher ON researcher.res_id = works_on.res_id
 INNER JOIN project ON works_on.proj_id = project.proj_id
 AND ends_on > "2022-06-06"
-GROUP BY works_on.res_id;
+GROUP BY researcher.res_id;
 
 CREATE VIEW taskless_proj_count_per_res AS 
 SELECT 

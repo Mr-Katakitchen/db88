@@ -1,4 +1,8 @@
-SELECT /*org1.org_id AS id1,org2.org_id AS id2,*/ org1.name AS organization_1,  org2.name AS organization_2,/* org1.from_date, org1.from_date_plus_two, org2.tail_date,*/ max(org1.two_year_count) AS projects
+SELECT #org1.org_id AS id1, 
+	   org1.name AS organization_1, 
+	   #org2.org_id AS id2, 
+	   org2.name AS organization_2,
+	   org1.from_date AS base_date, max(org1.two_year_count) AS projects
 FROM biyearly_projects_per_org org1
 INNER JOIN biyearly_projects_per_org org2 ON org1.org_id <> org2.org_id
 WHERE org2.from_date > org1.from_date AND org2.tail_date < org1.from_date_plus_two
@@ -38,6 +42,6 @@ AND (SELECT temp.one_year_count
 																 AND temp.tail_date <= adddate(org2.from_date, INTERVAL 2 year))
 	GROUP BY temp.from_date
 	) >= 10
-GROUP BY org1.org_id, org2.org_id
+GROUP BY org1.org_id, org2.org_id, org1.from_date
 ORDER BY projects desc;
 
