@@ -12,12 +12,13 @@ INNER JOIN project ON
 	works_on.proj_id = project.proj_id
 GROUP BY researcher.res_id;
 
-CREATE VIEW proj_per_org AS SELECT 
-	organization.org_id, name AS org_name, abbrev, postal_code, street, city, proj_id, title AS project_title, budget, started_on, ends_on
+CREATE VIEW proj_per_prog AS SELECT 
+	program.prog_id, program.title AS program_title, department, proj_id, project.title AS project_title, budget, started_on, ends_on
 FROM
-	organization
+	program
 INNER JOIN project ON
-	organization.org_id = project.org_id;
+	project.prog_id = program.prog_id
+	GROUP BY proj_id;
 
 CREATE VIEW proj_count_per_org AS
 	SELECT organization.org_id, name AS org_name, count(project.org_id) AS projects, proj_id, started_on
