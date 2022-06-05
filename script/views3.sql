@@ -6,7 +6,7 @@ SELECT org.org_id, org.name,
 base.started_on AS from_date,
 adddate(base.started_on, INTERVAL 1 year) AS from_date_plus_one, 
 count(tail.proj_id) AS one_year_count,
-base.proj_id, 
+base.proj_id AS base_id, 
 max(tail.started_on) AS tail_date
 FROM organization org
 INNER JOIN project base ON
@@ -19,14 +19,14 @@ WHERE EXISTS
 	INNER JOIN project ON organization.org_id = project.org_id
 	WHERE organization.org_id = org.org_id 
 	AND project.proj_id = tail.proj_id)
-GROUP BY org.org_id, base.started_on;
+GROUP BY org.org_id, base.proj_id;
 
 CREATE VIEW biyearly_projects_per_org AS
 SELECT org.org_id, org.name,
 base.started_on AS from_date,
 adddate(base.started_on, INTERVAL 2 year) AS from_date_plus_two, 
 count(tail.proj_id) AS two_year_count, 
-base.proj_id,
+base.proj_id AS base_id,
 max(tail.started_on) AS tail_date
 FROM organization org
 INNER JOIN project base ON
@@ -39,4 +39,4 @@ WHERE EXISTS
 	INNER JOIN project ON organization.org_id = project.org_id
 	WHERE organization.org_id = org.org_id 
 	AND project.proj_id = tail.proj_id)
-GROUP BY org.org_id, base.started_on;
+GROUP BY org.org_id, base.proj_id;

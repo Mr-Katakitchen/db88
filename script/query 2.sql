@@ -1,12 +1,15 @@
 #Opsi Deyteri
 
-SELECT title, department #SELECT program 
-FROM program
-GROUP BY prog_id;
+SELECT res_id AS researcher_id, concat(first_name,' ',last_name) AS researcher_name #SELECT researcher
+FROM researcher
+GROUP BY res_id;
 
-SELECT program_title, department, project_title, budget, started_on, ends_on
-FROM proj_per_prog
-WHERE program_title = 'Adams Inc'
+SELECT concat(first_name,' ',last_name) AS researcher_name, 
+		title AS evaluated_project, started_on AS project_started_on, proj_id AS project_id,
+		grade AS grade_given,
+		date AS evaluation_date
+FROM evaluation 
+WHERE res_id = 13 #id OF selected researcher-evaluator
 GROUP BY proj_id;
 
 #Opsi Prwti
@@ -20,7 +23,7 @@ SELECT concat(first_name, ' ', last_name) AS researcher_name, title AS project_t
 FROM project 
 INNER JOIN works_on ON works_on.proj_id = project.proj_id 
 INNER JOIN researcher ON researcher.res_id = works_on.res_id 
-WHERE concat(first_name, ' ', last_name) = 'Verile D''Adda'
+WHERE researcher.res_id = 100 #id OF selected researcher
 GROUP BY project.proj_id;
 
 
