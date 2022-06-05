@@ -7,8 +7,7 @@ CREATE VIEW field_pair AS
 FROM
 		field_project table1
 INNER JOIN field_project table2 ON
-table1.proj_id = table2.proj_id
-AND table1.field_id <> table2.field_id
+table1.proj_id = table2.proj_id AND table1.field_id <> table2.field_id
 INNER JOIN scientific_field field1 ON
 field1.field_id = table1.field_id
 INNER JOIN scientific_field field2 ON
