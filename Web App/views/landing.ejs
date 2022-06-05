@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title> <%= pageTitle %> </title>
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+</head>
+
+<body>
+    
+    <%- include("includes/navbar.ejs")%>
+
+    <div class="container" id="row-container">
+
+        <div class="row" id="row-2">
+            <div class="col-md">
+                <div class="card" id="card-container-layout">
+                    <div class="card-body" id="card">
+                        <h4 class="card-title">Projects since 2016: <%= number_of_projects %></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="card" id="card-container-layout">
+                    <div class="card-body" id="card">
+                        <h4 class="card-title">Number of employeed researchers: <%= number_of_researchers %></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="card" id="card-container-layout">
+                    <div class="card-body" id="card">
+                        <h4 class="card-title">Collaborating organizations: <%= number_of_organizations %></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+        <hr size="3">
+
+        <div class="row" id="row-2">
+            <div class="col-md">
+                <div class="card" id="card-container-layout">
+                    <div class="card-body" id="card">
+                        <h4 class="card-title">1st Endpoint</h4>
+                        <p class="card-text" id="paragraph">Researchers ...</p>
+                        <a class="btn btn-primary" id="show-btn" href="/students">...</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="card" id="card-container-layout">
+                    <div class="card-body" id="card">
+                        <h4 class="card-title">2nd Endpoint</h4>
+                        <p class="card-text" id="paragraph">Two views of the Relational Model<br></p>
+                        <a class="btn btn-primary" id="show-btn" href="/end2.1">1) Projects per Researcher</a>
+                        <div class="row" id="row-2"></div>
+                        <a class="btn btn-primary" id="show-btn" href="/end2.2">2) Organizations per Project</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="card" id="card-container-layout">
+                    <div class="card-body" id="card">
+                        <h4 class="card-title">3rd Endpoint</h4>
+                        <p class="card-text" id="paragraph">The projects and the researchers that are related to a scientific field<br></p>
+                        <!-- <a class="btn btn-primary" id="show-btn" href="/end3">Select Scientific Field</a> -->
+                        <div class="form-group">
+                            <!-- <label for="field">Select Scientific Field</label> -->
+                                <select class="form-control" id="field-dropdown" onchange="getSelectValue();">
+                                    <option value=""> Select Scientific Field </option>
+                                        <% if(field_list.length){for(var i = 0; i< field_list.length; i++) {%> 
+                                    <option value="<%= field_list[i].title%>"> <%= field_list[i].title%> </option>
+                                        <% } } %>
+                                </select>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="card" id="card-container-layout">
+                    <div class="card-body" id="card">
+                        <h4 class="card-title">4th Endpoint</h4>
+                        <p class="card-text" id="paragraph">Organizations with the same amount of projects(>9), in a span of 2 years<br></p>
+                        <a class="btn btn-primary" id="show-btn" href="/end4">Show Results</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" id="row-2">
+            <div class="col-md">
+                <div class="card" id="card-container-layout">
+                    <div class="card-body" id="card">
+                        <h4 class="card-title">5th Endpoint</h4>
+                        <p class="card-text" id="paragraph">Top 3 scientific field pairs, ordered by popularity<br></p>
+                        <a class="btn btn-primary" id="show-btn" href="/end5">Show Results</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="card" id="card-container-layout">
+                    <div class="card-body" id="card">
+                        <h4 class="card-title">6th Endpoint</h4>
+                        <p class="card-text" id="paragraph">Most active young researchers<br></p>
+                        <a class="btn btn-primary" id="show-btn" href="/end6">Show Results</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="card" id="card-container-layout">
+                    <div class="card-body" id="card">
+                        <h4 class="card-title">7th Endpoint</h4>
+                        <p class="card-text" id="paragraph">Top 5 executive-company pairs, ordered by project budget<br></p>
+                        <a class="btn btn-primary" id="show-btn" href="/end7">Show Results</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="card" id="card-container-layout">
+                    <div class="card-body" id="card">
+                        <h4 class="card-title">8th Endpoint</h4>
+                        <p class="card-text" id="paragraph">Researchers that work on 5 or more -taskless- projects<br></p>
+                        <a class="btn btn-primary" id="show-btn" href="/end8">Show Results</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script> 
+        function getSelectValue()
+        {
+            var selectedField = document.getElementById("field-dropdown").value;
+
+            window.location.href = '/end3?field=' + selectedField;
+        }
+    </script>
+
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            toastr.options = {
+                "closeButton": true,
+                "positionClass": "toast-bottom-right",
+                "preventDuplicates": false
+            };
+            /* In order to access variables sent to ejs file to script you must Parse them to string */
+            /* then to parse them back to JSON */
+            let messages = '<%- JSON.stringify(messages) %>';
+            messages = JSON.parse(messages);
+            messages.forEach(({
+                type,
+                value
+            }) => {
+                switch (type) {
+                    case 'error':
+                        toastr.error(value)
+                        break;
+                    case 'success':
+                        toastr.success(value)
+                        break;
+                    case 'warning':
+                        toastr.warning(value)
+                        break;
+                    default:
+                        toastr.info(value)
+                        break;
+                }
+            });
+        })
+    </script>
+
+</body>
+
+</html>
