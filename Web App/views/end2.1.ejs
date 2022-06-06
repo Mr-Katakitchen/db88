@@ -16,7 +16,7 @@
     <%- include("includes/navbar.ejs")%>
 
     <br>
-    <center><h3>The projects and the researchers that are related to 'scientific field'</h3></center>
+    <center><h3>Projects of 'researcher' and their starting date</h3></center>
 
     <div class="container">
         <br>
@@ -30,48 +30,16 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>Projects</th>
+                                        <th>Project</th>
+                                        <th>Started On</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <%  projects.forEach((project, _) => { %>
                                         <tr>
-                                            <td><%= project.title %></td>
-                                            <td>
-                                            </td>
-                                        </tr>
-                                    <% }) %>
-                                </tbody>
-                            </table>
-                        </div>
-                    <% } %>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <br>
-            <div class="col-md-12">
-                <div class="card" id="card-container">
-                    <div class="card-body" id="card">
-                    <% if (researchers.length == 0) { %> 
-                        <h1 style="margin-top: 5rem;">No results found!</h1>
-                    <% } else { %>
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Researchers</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <%  researchers.forEach((researcher, _) => { %>
-                                        <tr>
-                                            <td><%= researcher.researcher_name %></td>
+                                            <td><%= project.project_title %></td>
+                                            <td><%= project.started_on %></td>
                                             <td>
                                             </td>
                                         </tr>

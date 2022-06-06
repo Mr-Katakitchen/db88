@@ -48,31 +48,65 @@
                 <div class="card" id="card-container-layout">
                     <div class="card-body" id="card">
                         <h4 class="card-title">1st Endpoint</h4>
-                        <p class="card-text" id="paragraph">Researchers ...</p>
-                        <a class="btn btn-primary" id="show-btn" href="/students">...</a>
+                        <p class="card-text" id="paragraph">Researchers working on a project that is funded by a given program</p>
+                        <div class="form-group">
+                            <select class="form-control" id="program-dropdown" onchange="getSelectProg();">
+                                <option value=""> Select Program </option>
+                                    <% if(program_list.length){for(var i = 0; i< program_list.length; i++) {%> 
+                                <option value="<%= program_list[i].title%>"> <%= program_list[i].title%> </option>
+                                    <% } } %>
+                            </select>
+                        </div>
+                        <label for="form">to view projects funded by it</label>
+                        <div class="row" id="row-2"></div>
+                        <div class="form-group">
+                            <select class="form-control" id="project-dropdown" onchange="getSelectProj();">
+                                <option value=""> Select Project | Starting Date | Duration(in days) | Executive </option>
+                                    <% if(project_list.length){for(var i = 0; i< project_list.length; i++) {%> 
+                                <option value="<%= project_list[i].project_id%>"> <%= project_list[i].project_title%> | <%= project_list[i].started_on%> | <%= project_list[i].duration_in_days%> | <%= project_list[i].executive_name%></option>
+                                    <% } } %>
+                            </select>
+                        </div>
+                        <label for="form">to view researchers working on it</label>
                     </div>
                 </div>
             </div>
+
             <div class="col-md">
                 <div class="card" id="card-container-layout">
                     <div class="card-body" id="card">
                         <h4 class="card-title">2nd Endpoint</h4>
                         <p class="card-text" id="paragraph">Two views of the Relational Model<br></p>
-                        <a class="btn btn-primary" id="show-btn" href="/end2.1">1) Projects per Researcher</a>
+                        <div class="form-group">
+                            <select class="form-control" id="researcher1-dropdown" onchange="getSelectRes1();">
+                                <option value="">(1) Select Researcher </option>
+                                    <% if(researcher_list.length){for(var i = 0; i< researcher_list.length; i++) {%> 
+                                <option value="<%= researcher_list[i].name%>"> <%= researcher_list[i].name%> </option>
+                                    <% } } %>
+                            </select>
+                        </div>
+                        <label for="form">to view the projects they work/worked on</label>
                         <div class="row" id="row-2"></div>
-                        <a class="btn btn-primary" id="show-btn" href="/end2.2">2) Organizations per Project</a>
+                        <div class="form-group">
+                            <select class="form-control" id="researcher2-dropdown" onchange="getSelectRes2();">
+                                <option value="">(2) Select Researcher </option>
+                                    <% if(researcher_list.length){for(var i = 0; i< researcher_list.length; i++) {%> 
+                                <option value="<%= researcher_list[i].name%>"> <%= researcher_list[i].name%> </option>
+                                    <% } } %>
+                            </select>
+                        </div>
+                        <label for="form">to view the projects they evaluated</label>
                     </div>
                 </div>
             </div>
+
             <div class="col-md">
                 <div class="card" id="card-container-layout">
                     <div class="card-body" id="card">
                         <h4 class="card-title">3rd Endpoint</h4>
                         <p class="card-text" id="paragraph">The projects and the researchers that are related to a scientific field<br></p>
-                        <!-- <a class="btn btn-primary" id="show-btn" href="/end3">Select Scientific Field</a> -->
                         <div class="form-group">
-                            <!-- <label for="field">Select Scientific Field</label> -->
-                                <select class="form-control" id="field-dropdown" onchange="getSelectValue();">
+                                <select class="form-control" id="field-dropdown" onchange="getSelectField();">
                                     <option value=""> Select Scientific Field </option>
                                         <% if(field_list.length){for(var i = 0; i< field_list.length; i++) {%> 
                                     <option value="<%= field_list[i].title%>"> <%= field_list[i].title%> </option>
@@ -82,6 +116,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-md">
                 <div class="card" id="card-container-layout">
                     <div class="card-body" id="card">
@@ -91,6 +126,7 @@
                     </div>
                 </div>
             </div>
+
 
             <div class="row" id="row-2">
             <div class="col-md">
@@ -102,6 +138,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-md">
                 <div class="card" id="card-container-layout">
                     <div class="card-body" id="card">
@@ -111,6 +148,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-md">
                 <div class="card" id="card-container-layout">
                     <div class="card-body" id="card">
@@ -120,6 +158,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-md">
                 <div class="card" id="card-container-layout">
                     <div class="card-body" id="card">
@@ -130,13 +169,48 @@
                 </div>
             </div>
         </div>
-
+        <div class="row" id="row-2"></div>
     </div>
 
+
     <script> 
-        function getSelectValue()
+        function getSelectProg()
         {
-            var selectedField = document.getElementById("field-dropdown").value;
+            var selectedProg = document.getElementById("program-dropdown").value;
+
+            window.location.href = '?program=' + selectedProg;
+        }
+    </script>
+    <script> 
+        function getSelectProj()
+        {
+            var selectedProj = document.getElementById("project-dropdown").value;
+
+            window.location.href = '/end1?project_id=' + selectedProj;
+        }
+    </script>
+    
+    <script> 
+        function getSelectRes1()
+        {
+            var selectedRes = document.getElementById("researcher1-dropdown").value;
+
+            window.location.href = '/end2.1?researcher=' + selectedRes;
+        }
+    </script>
+    <script> 
+        function getSelectRes2()
+        {
+            var selectedRes = document.getElementById("researcher2-dropdown").value;
+
+            window.location.href = '/end2.2?researcher=' + selectedRes;
+        }
+    </script>
+
+    <script> 
+        function getSelectField()
+        {
+         var selectedField = document.getElementById("field-dropdown").value;
 
             window.location.href = '/end3?field=' + selectedField;
         }

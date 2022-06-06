@@ -6,20 +6,16 @@ const flash = require('connect-flash');
 require('custom-env').env('localhost');
 
 /* ROUTES and how to import routes */
-
 const layout = require('./routes/layout');
-// const endpoint1 = require('./routes/end1');
-// const endpoint2 = require('./routes/end2');
+const endpoint1 = require('./routes/end1');
+const endpoint2_1 = require('./routes/end2.1');
+const endpoint2_2 = require('./routes/end2.2');
 const endpoint3 = require('./routes/end3');
 const endpoint4 = require('./routes/end4');
 const endpoint5 = require('./routes/end5');
 const endpoint6 = require('./routes/end6');
 const endpoint7 = require('./routes/end7');
 const endpoint8 = require('./routes/end8');
-
-            // const grades = require('./routes/grades');
-            // const students = require('./routes/students');
-
 /* end of ROUTES and how to import routes */
 
 const app = express();
@@ -40,20 +36,16 @@ app.use(session({
 }));
 
 /* Routes used by the project */
-
 app.use('/', layout);
-// app.use('/end1', endpoint1);
-// app.use('/end2', endpoint2);
+app.use('/end1', endpoint1);
+app.use('/end2.1', endpoint2_1);
+app.use('/end2.2', endpoint2_2);
 app.use('/end3', endpoint3);
 app.use('/end4', endpoint4);
 app.use('/end5', endpoint5);
 app.use('/end6', endpoint6);
 app.use('/end7', endpoint7);
 app.use('/end8', endpoint8);
-
-                // app.use('/grades', grades);
-                // app.use('/students', students);
-
 /* End of routes used by the project */
 
 // In case of an endpoint does not exist must return 404.html

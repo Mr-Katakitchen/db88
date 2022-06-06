@@ -10,10 +10,10 @@ exports.getResearchers = (req, res, next) => {
     /* create the connection, execute query, render data */
     pool.getConnection((err, conn) => {
         
-        conn.promise().query("SELECT concat(first_name, ' ', last_name) AS researcher_name, age, projects FROM proj_count_per_res WHERE projects = (SELECT max(projects) FROM proj_count_per_res WHERE birthdate > adddate(sysdate(), INTERVAL -40 YEAR)) AND birthdate > adddate(sysdate(), INTERVAL -40 YEAR) ORDER BY age;")
+        conn.promise().query("SELECT concat(first_name,' ',last_name) AS researcher_name FROM researcher INNER JOIN works_on ON researcher.res_id = works_on.res_id INNER JOIN project ON project.proj_id = works_on.proj_id AND project.proj_id = 233 GROUP BY researcher.res_id;")
         .then(([rows, fields]) => {
-            res.render('end6.ejs', {
-                pageTitle: "6th Endpoint",
+            res.render('end1.ejs', {
+                pageTitle: "1st Endpoint",
                 researchers: rows,
                 messages: messages
             })

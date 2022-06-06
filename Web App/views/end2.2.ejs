@@ -16,62 +16,32 @@
     <%- include("includes/navbar.ejs")%>
 
     <br>
-    <center><h3>The projects and the researchers that are related to 'scientific field'</h3></center>
+    <center><h3>Projects evaluated by 'researcher', their grade and their evaluation date</h3></center>
 
     <div class="container">
         <br>
             <div class="col-md-12">
                 <div class="card" id="card-container">
                     <div class="card-body" id="card">
-                    <% if (projects.length == 0) { %> 
+                    <% if (evaluations.length == 0) { %> 
                         <h1 style="margin-top: 5rem;">No results found!</h1>
                     <% } else { %>
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>Projects</th>
+                                        <th>Project</th>
+                                        <th>Grade</th>
+                                        <th>Evaluation Date</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <%  projects.forEach((project, _) => { %>
+                                    <%  evaluations.forEach((evaluation, _) => { %>
                                         <tr>
-                                            <td><%= project.title %></td>
-                                            <td>
-                                            </td>
-                                        </tr>
-                                    <% }) %>
-                                </tbody>
-                            </table>
-                        </div>
-                    <% } %>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <br>
-            <div class="col-md-12">
-                <div class="card" id="card-container">
-                    <div class="card-body" id="card">
-                    <% if (researchers.length == 0) { %> 
-                        <h1 style="margin-top: 5rem;">No results found!</h1>
-                    <% } else { %>
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Researchers</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <%  researchers.forEach((researcher, _) => { %>
-                                        <tr>
-                                            <td><%= researcher.researcher_name %></td>
+                                            <td><%= evaluation.evaluated_project %></td>
+                                            <td><%= evaluation.grade_given %></td>
+                                            <td><%= evaluation.evaluation_date %></td>
                                             <td>
                                             </td>
                                         </tr>

@@ -1,6 +1,6 @@
 const { pool } = require('../utils/database');
 
-/* Controller to retrieve students from database */
+/* Controller to retrieve data from database */
 exports.getResearchers = (req, res, next) => {
 
     /* check for messages in order to show them when rendering the page */

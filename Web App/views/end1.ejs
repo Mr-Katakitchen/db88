@@ -16,41 +16,7 @@
     <%- include("includes/navbar.ejs")%>
 
     <br>
-    <center><h3>The projects and the researchers that are related to 'scientific field'</h3></center>
-
-    <div class="container">
-        <br>
-            <div class="col-md-12">
-                <div class="card" id="card-container">
-                    <div class="card-body" id="card">
-                    <% if (projects.length == 0) { %> 
-                        <h1 style="margin-top: 5rem;">No results found!</h1>
-                    <% } else { %>
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Projects</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <%  projects.forEach((project, _) => { %>
-                                        <tr>
-                                            <td><%= project.title %></td>
-                                            <td>
-                                            </td>
-                                        </tr>
-                                    <% }) %>
-                                </tbody>
-                            </table>
-                        </div>
-                    <% } %>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <center><h3>Researchers that work on 'project'</h3></center>
 
     <div class="container">
         <br>

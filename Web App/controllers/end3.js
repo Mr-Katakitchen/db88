@@ -1,6 +1,6 @@
 const { pool } = require('../utils/database');
 
-/* Controller to retrieve students from database */
+/* Controller to retrieve data from database */
 exports.getFieldData = (req, res, next) => {
 
     /* check for messages in order to show them when rendering the page */
@@ -37,7 +37,7 @@ exports.getFieldData = (req, res, next) => {
         /* when queries promises finish render respective data */
         Promise.all([projectsPromise, researchersPromise]).then(() => {
             res.render('end3.ejs', {
-                pageTitle: "3th Endpoint",
+                pageTitle: "3rd Endpoint",
                 projects,
                 researchers,
                 messages
